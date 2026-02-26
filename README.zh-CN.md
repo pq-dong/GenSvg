@@ -143,3 +143,45 @@ GenSVG 使用 [Vercel AI SDK](https://sdk.vercel.ai/docs) 支持多个 AI 提供
 - **阶段 5：开发者体验（DX）**
   - **可视化检查器**：类似 DevTools 的 UI，点击 SVG 元素可高亮生成它的确切 JSON Patch。
   - **CLI 工具**：通过终端在构建时生成 SVG（`npx svg-render "a red circle"`）。
+
+## 贡献指南
+
+欢迎所有形式的贡献！以下是参与项目开发的流程：
+
+### 开发流程
+
+1. **Fork 本仓库** 到你的 GitHub 账号
+2. **Clone 你的 Fork** 到本地：
+   ```bash
+   git clone https://github.com/your-username/gensvg.git
+   cd gensvg
+   ```
+3. **创建功能分支**（基于 `dev` 分支）：
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **安装依赖并开发**：
+   ```bash
+   npm install
+   npm run dev
+   ```
+5**提交代码**（建议使用语义化提交信息）：
+   ```bash
+   git commit -m "feat: 添加 xxx 功能"
+   ```
+6**推送到你的 Fork**：
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+7**创建 Pull Request** 到本仓库的 `dev` 分支
+
+### 分支说明
+
+| 分支 | 说明           |
+|------|--------------|
+| `main` | 主分支，稳定的生产代码  |
+| `main` | 主分支，稳定的开发中代码 |
+| `feature/*` | 功能开发分支       |
+| `fix/*` | Bug 修复分支     |
+
+感谢你的贡献！

@@ -145,3 +145,45 @@ Based on the philosophy that the future of software is **"To-Agent"** rather tha
 - **Phase 5: Headless & CLI Integration (CI/CD for Agents)**
   - **CLI Tool**: Generate SVGs at build time via terminal (`npx svg-render "a red circle"`). This allows agents to generate assets directly within CI/CD pipelines, local file systems, or automated scripts.
   - **Agent API**: Expose the rendering engine as a headless service that other autonomous agents can call to generate visual assets on the fly.
+
+## Contributing
+
+We welcome all forms of contributions! Here's how to get involved:
+
+### Development Workflow
+
+1. **Fork this repository** to your GitHub account
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/your-username/gensvg.git
+   cd gensvg
+   ```
+3. **Create a feature branch** (based on `dev`):
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Install dependencies and start developing**:
+   ```bash
+   npm install
+   npm run dev
+   ```
+5. **Commit your changes** (semantic commit messages recommended):
+   ```bash
+   git commit -m "feat: add some feature"
+   ```
+6. **Push to your fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+7. **Create a Pull Request** to the `dev` branch of this repository
+
+### Branch Naming
+
+| Branch | Description |
+|--------|-------------|
+| `main` | Main branch, stable production code |
+| `dev` | Development branch, work-in-progress code |
+| `feature/*` | Feature development branches |
+| `fix/*` | Bug fix branches |
+
+Thank you for contributing!
