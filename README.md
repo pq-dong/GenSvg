@@ -122,29 +122,29 @@ The default catalog supports a wide range of SVG elements:
 - **Containers**: `Group`
 - **Definitions**: `LinearGradient`, `RadialGradient`, `Stop`, `Filter`, `FeGaussianBlur`, `FeDropShadow`
 
-## Next Steps (Roadmap)
+## Next Steps (Roadmap: The "To-Agent" Vision)
 
-Based on production experience with AI-driven UI generation, the future evolution of this project focuses on interactivity, dynamic data, and self-healing mechanisms:
+Based on the philosophy that the future of software is **"To-Agent"** rather than "To-Human", the evolution of this project focuses on autonomous generation, self-healing, and programmatic integration. Manual human operations (like visual layer tweaking or manual code export) are deprioritized in favor of empowering AI agents to autonomously generate, iterate, and maintain visual components.
 
-- **Phase 1: Interactivity & Animation**
-  - **Event Binding**: Allow the Catalog to define interactive events (`onClick`, `onHover`) so AI-generated SVGs can trigger React state changes.
+- **Phase 1: Agentic Iteration (Incremental Modification)**
+  - **Targeted JSONL Patches**: Move beyond one-shot generation. Agents can output targeted JSON patches to modify existing states (e.g., an agent deciding to "change the left eye to blue" without regenerating the whole SVG).
+  - **State Awareness**: Feed the current JSON state back to the agent so it can reason about spatial relationships and make precise adjustments.
+
+- **Phase 2: Dynamic Data Binding & Animation**
+  - **Props Injection**: Allow the SVG spec to accept external data (e.g., `data={{ progress: 75 }}`) and bind it to SVG attributes, turning the output into reusable, data-driven components.
   - **Motion Integration**: Support `<animate>`, `<animateTransform>`, or seamless integration with Framer Motion for AI-choreographed animations.
 
-- **Phase 2: Dynamic Data Binding (Templates)**
-  - **Props Injection**: Move beyond static generation. Allow the SVG spec to accept external data (e.g., `data={{ progress: 75 }}`) and bind it to SVG attributes, turning the output into reusable, data-driven components.
-
-- **Phase 3: Self-Healing & Auto-Correction**
-  - **LLM Feedback Loop**: If Zod validation fails during streaming, automatically catch the error and prompt the LLM to fix the specific attribute in the background.
+- **Phase 3: Autonomous Self-Healing**
+  - **LLM Feedback Loop**: If Zod validation fails during streaming, automatically catch the error, feed it back to the agent, and prompt it to fix the specific attribute in the background without human intervention.
   - **Robust Partial Rendering**: Enhanced AST recovery for broken JSON patches during network interruptions.
 
-- **Phase 4: Ecosystem & Domain-Specific Catalogs**
-  - `@svg-render/charts`: Pre-built catalog for data visualization (AI outputs data, Catalog handles the D3/SVG math).
-  - `@svg-render/diagrams`: Nodes, edges, and flowcharts.
-  - **React Component Wrapping**: Support for `<foreignObject>` to embed complex React components inside the AI-generated SVG canvas.
+- **Phase 4: Domain-Specific Catalogs (Agent Toolkits)**
+  - **`@svg-render/charts`**: Pre-built catalog for data visualization. Agents output raw data, and the Catalog handles the D3/SVG math.
+  - **`@svg-render/diagrams`**: Nodes, edges, and flowcharts optimized for agentic architecture generation.
 
-- **Phase 5: Developer Experience (DX)**
-  - **Visual Inspector**: A DevTools-like UI to click an SVG element and highlight the exact JSON Patch that generated it.
-  - **CLI Tool**: Generate SVGs at build time via terminal (`npx svg-render "a red circle"`).
+- **Phase 5: Headless & CLI Integration (CI/CD for Agents)**
+  - **CLI Tool**: Generate SVGs at build time via terminal (`npx svg-render "a red circle"`). This allows agents to generate assets directly within CI/CD pipelines, local file systems, or automated scripts.
+  - **Agent API**: Expose the rendering engine as a headless service that other autonomous agents can call to generate visual assets on the fly.
 
 ## Contributing
 
