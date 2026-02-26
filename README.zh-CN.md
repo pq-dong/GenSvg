@@ -2,6 +2,8 @@
 
 一个 AI 驱动的 SVG 生成器，支持流式 JSONL 增量渲染，灵感来自 [vercel-labs/json-render](https://github.com/vercel-labs/json-render)。
 
+[English Documentation](README.md)
+
 ## 概述
 
 **GenSVG** 提供了一个健壮、类型安全且受约束的系统，用于使用 AI 生成 SVG。区别与让 AI 直接输出原始、不可预测的 SVG 字符串不同，该项目强制 AI 输出符合严格定义模式（Catalog）的 JSONL 序列。
@@ -120,29 +122,29 @@ GenSVG 使用 [Vercel AI SDK](https://sdk.vercel.ai/docs) 支持多个 AI 提供
 - **容器**：`Group`
 - **定义**：`LinearGradient`、`RadialGradient`、`Stop`、`Filter`、`FeGaussianBlur`、`FeDropShadow`
 
-## 下一步计划（路线图）
+## 下一步计划（路线图："To-Agent" 愿景）
 
-基于 AI 驱动 UI 生成的生产经验，该项目的未来演进重点关注交互性、动态数据和自愈机制：
+基于"软件的未来是 **'To-Agent' 而非 'To-Human'**"的理念，该项目的发展重点在于自主生成、自愈和程序化集成。人工操作（如手动调整视觉层或导出代码）优先级较低，更注重赋予 AI agent 自主生成、迭代和维护视觉组件的能力。
 
-- **阶段 1：交互性与动画**
-  - **事件绑定**：允许 Catalog 定义交互事件（`onClick`、`onHover`），使 AI 生成的 SVG 能够触发 React 状态变更。
-  - **动画集成**：支持 `<animate>`、`<animateTransform>`，或与 Framer Motion 无缝集成，实现 AI 编排的动画。
+- **阶段 1：Agent 迭代（增量修改）**
+  - **目标化 JSONL 补丁**：超越一次性生成。Agent 可以输出针对性的 JSON 补丁来修改现有状态（例如，agent 决定"将左眼改为蓝色"而无需重新生成整个 SVG）。
+  - **状态感知**：将当前 JSON 状态反馈给 agent，使其能够推理空间关系并进行精确调整。
 
-- **阶段 2：动态数据绑定（模板）**
-  - **Props 注入**：超越静态生成。允许 SVG 规范接受外部数据（如 `data={{ progress: 75 }}`）并将其绑定到 SVG 属性，将输出转变为可复用的数据驱动组件。
+- **阶段 2：动态数据绑定与动画**
+  - **Props 注入**：允许 SVG 规范接受外部数据（如 `data={{ progress: 75 }}`）并将其绑定到 SVG 属性，将输出转变为可复用的数据驱动组件。
+  - **Motion 集成**：支持 `<animate>`、`<animateTransform>`，或与 Framer Motion 无缝集成，实现 AI 编排的动画。
 
-- **阶段 3：自愈与自动修正**
-  - **LLM 反馈循环**：如果流式处理期间 Zod 验证失败，自动捕获错误并在后台提示 LLM 修正特定属性。
+- **阶段 3：自主自愈**
+  - **LLM 反馈循环**：如果流式处理期间 Zod 验证失败，自动捕获错误，将其反馈给 agent，并在后台提示其修正特定属性，无需人工干预。
   - **健壮的部分渲染**：增强网络中断时损坏 JSON 补丁的 AST 恢复能力。
 
-- **阶段 4：生态与领域特定 Catalog**
-  - `@svg-render/charts`：数据可视化的预构建 Catalog（AI 输出数据，Catalog 处理 D3/SVG 数学）。
-  - `@svg-render/diagrams`：节点、边和流程图。
-  - **React 组件包装**：支持 `<foreignObject>` 在 AI 生成的 SVG 画布中嵌入复杂的 React 组件。
+- **阶段 4：领域特定 Catalog（Agent 工具包）**
+  - **`@svg-render/charts`**：数据可视化的预构建 catalog。Agent 输出原始数据，Catalog 处理 D3/SVG 数学计算。
+  - **`@svg-render/diagrams`**：针对 agent 架构生成优化的节点、边和流程图。
 
-- **阶段 5：开发者体验（DX）**
-  - **可视化检查器**：类似 DevTools 的 UI，点击 SVG 元素可高亮生成它的确切 JSON Patch。
-  - **CLI 工具**：通过终端在构建时生成 SVG（`npx svg-render "a red circle"`）。
+- **阶段 5：无头模式与 CLI 集成（面向 Agent 的 CI/CD）**
+  - **CLI 工具**：通过终端在构建时生成 SVG（`npx svg-render "a red circle"`）。这使得 agent 可以直接在 CI/CD 流水线、本地文件系统或自动化脚本中生成资源。
+  - **Agent API**：将渲染引擎暴露为无头服务，其他 autonomous agent 可以调用它来即时生成视觉资源。
 
 ## 贡献指南
 
@@ -165,22 +167,22 @@ GenSVG 使用 [Vercel AI SDK](https://sdk.vercel.ai/docs) 支持多个 AI 提供
    npm install
    npm run dev
    ```
-5**提交代码**（建议使用语义化提交信息）：
+5、**提交代码**（建议使用语义化提交信息）：
    ```bash
    git commit -m "feat: 添加 xxx 功能"
    ```
-6**推送到你的 Fork**：
+6、**推送到你的 Fork**：
    ```bash
    git push origin feature/your-feature-name
    ```
-7**创建 Pull Request** 到本仓库的 `dev` 分支
+7、**创建 Pull Request** 到本仓库的 `dev` 分支
 
 ### 分支说明
 
 | 分支 | 说明           |
 |------|--------------|
 | `main` | 主分支，稳定的生产代码  |
-| `main` | 主分支，稳定的开发中代码 |
+| `dev` | 开发分支，开发中的代码 |
 | `feature/*` | 功能开发分支       |
 | `fix/*` | Bug 修复分支     |
 
